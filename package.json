@@ -1,0 +1,57 @@
+{
+  "name": "blogfirebase",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "cookies": "^0.8.0",
+    "firebase": "^10.4.0",
+    "framer-motion": "^10.16.4",
+    "lottie-react": "^2.4.0",
+    "moment": "^2.29.4",
+    "paperclip": "^18.3.8",
+    "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
+    "react-lottie": "^1.2.3",
+    "react-multi-carousel": "^2.8.4",
+    "react-scripts": "5.0.1",
+    "react-simple-typewriter": "^5.0.1",
+    "react-spinners": "^0.13.8",
+    "react-typed": "^1.2.0",
+    "universal-cookie": "^6.1.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "react-router-dom": "^6.16.0",
+    "tailwindcss": "^3.3.3"
+  }
+}

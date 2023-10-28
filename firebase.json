@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site":"blogsaga",
+    "site":"blogsaga-io",
     "public": "build",
     "ignore": [
       "firebase.json",

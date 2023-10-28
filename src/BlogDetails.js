@@ -13,15 +13,13 @@ import {
 } from "firebase/firestore";
 import Login from "./Login";
 import { blogData, getCurrentUser, db, auth } from "./config/firebase";
-import moment from "moment";
 import BlogContext from "./contexts/BlogContext";
 import Loading from "./Loading";
+import moment from "moment";
 import conversation from "./assets/conversation.json";
-import Lottie from "react-lottie";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import conv from "./assets/conv.json";
 import Cookies from "universal-cookie";
-import { BiLogIn } from "react-icons/bi";
 const cookies = new Cookies();
 
 const TestDetail = () => {
@@ -232,7 +230,7 @@ const TestDetail = () => {
           <div className="">
             <div className=" flex justify-center  rounded-md  mt-4  z-0  ">
               <div className="flex justify-center w-[100%]">
-                <div className="   h-[100%] overflow-y-auto p-3 ">
+                <div className="h-[100%] overflow-y-auto p-3">
                   {messages.map((message) => (
                     <div key={message.id} className=" flex-col  ">
                       <p className="font-bold flex items-start   gap-1   ">

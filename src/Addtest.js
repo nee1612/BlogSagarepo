@@ -19,7 +19,7 @@ const Addtest = () => {
   const history = useNavigate();
   const { isLoading } = useContext(BlogContext);
   const [user, setUser] = useState(null);
-  const [setDataUser] = useState(null);
+  const [dataUser,setDataUser] = useState(null);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [setAuthor] = useState("");
@@ -29,7 +29,7 @@ const Addtest = () => {
   const authRef = collection(userData, "userCred");
   const currentUser = getCurrentUser();
   const [authState, setAuthState] = useState(cookies.get("auth-token"));
-  const [setIsValid] = useState("");
+  const [isValid,setIsValid] = useState("");
   const refToken = cookies.get("auth-token");
   useEffect(() => {
     const currentUser = getCurrentUser();

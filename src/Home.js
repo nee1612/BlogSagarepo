@@ -1,33 +1,25 @@
 import React, { useContext, useState } from "react";
-import { getDocs, collection } from "firebase/firestore";
 import BlogContext from "./contexts/BlogContext";
 import Lottie from "react-lottie";
 import Loading from "./Loading";
-import { BiUserCircle, BiSolidQuoteRight } from "react-icons/bi";
-import moment from "moment/moment";
+import { BiSolidQuoteRight } from "react-icons/bi";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import header1 from "./assets/header1";
 import background1 from "./assets/background1.json";
 import hero from "./assets/hero.json";
-import { getCurrentUser, userData } from "./config/firebase";
 import { Typewriter } from "react-simple-typewriter";
 import Pagination from "./Pagination";
 import Logo from "./assets/logo_transparent_dark.png";
-import Cookies from "universal-cookie";
 import BackToTop from "./BackToTop";
+import moment from 'moment';
 import search_icon from "./assets/search.json";
-import { motion} from "framer-motion";
+import { motion} from "framer-motion"; 
 
-import {FaMagnifyingGlass} from "react-icons/fa6";  
-const cookies = new Cookies();
 const Test = () => {
-  const currentUser = getCurrentUser();
-  const userRef = collection(userData, "userCred");
   const { isLoading } = useContext(BlogContext);
-  const { blgData, currentPosts } = useContext(BlogContext);
-  const [search, setSearch] = useState("");
-  console.log(search);
+  const { currentPosts } = useContext(BlogContext);
+  const [search,setSearch] = useState("");
 
   const defaultOptions = {
     loop: true,
@@ -92,7 +84,7 @@ const Test = () => {
                   </div>
                 </div>
                 <motion.div className="w-[9rem] mt-6 lmobile:mt-0 "   whileHover={{ scale: 1.1 }} >
-                <div className=" w-[17.5rem] smobile:w-[18rem]  my-3  py-2 rounded-r-full bg-blue-700 flex items-center gap-4 translate-x-[calc(-13.7rem+0.8vw)] hover:translate-x-[0]">
+                <div className=" w-[17.5rem] smobile:w-[18rem]  my-3  py-2 rounded-r-full bg-blue-700 flex items-center gap-4 translate-x-[calc(-14.5rem+2vw)] hover:translate-x-[0]">
                   <input
                     onChange={(e) => setSearch(e.target.value)}
                     type="text"
@@ -115,14 +107,14 @@ const Test = () => {
                           return (
                             search.toLowerCase() === ""
                               ? sear
-                              : sear.Title.toLowerCase().includes(search),
-                            sear.Body.toLowerCase().includes(search),
+                              :  sear.Title.toLowerCase().includes(search) ||
+                            sear.Body.toLowerCase().includes(search) ||
                             sear.User.toLowerCase().includes(search)
                           );
                         })
                         .map((blog) => (
                           <div className="flex relative   ">
-                            <div class=" p-6 pb-7 min-w-[2rem]  mmobile:min-w-[23rem] lmobile:min-w-[28rem] sm:min-w-[38rem] md:min-w-[45rem]  lg:min-w-[35rem]  max-w-[40rem] w-[270px] smobile:w-[310px] mmobile:w-[300px] rounded-md shadow-md drop-shadow-md hover:shadow-xl hover:transition-all bg-gray-800 bg-opacity-90 backdrop-blur-sm  ">
+                            <div class=" p-6 pb-7 min-w-[2rem]  mmobile:min-w-[23rem] lmobile:min-w-[28rem] sm:min-w-[38rem] md:min-w-[45rem]  lg:min-w-[35rem]  max-w-[40rem] w-[270px] smobile:w-[310px] mmobile:w-[300px] rounded-md shadow-md  hover:shadow-xl hover:transition-all bg-gray-800 bg-opacity-90 backdrop-blur-sm   ">
                               <div className="pb-4 flex items-center gap-2 ">
                                 {blog.Photo ? (
                                   <img
@@ -142,7 +134,7 @@ const Test = () => {
                                     {" "}
                                     {moment(
                                       blog.createdAt.toDate()
-                                    ).calendar()}{" "}
+                                    ).calendar()}
                                   </p>
                                 </div>
                               </div>
@@ -150,7 +142,7 @@ const Test = () => {
                                 {blog.Title}
                               </h5>
                               {/* <p className="text-white text-xs py-1 ">Posted on: {toDate(blog.createdAt)}</p> */}
-                              {/* <p className="text-white text-xs py-1 ">Posted on: {blog.createdAt.toDate().toDateString()}</p> */}
+                              <p className="text-white text-xs py-1 ">Posted on: {blog.createdAt.toDate().toDateString()}</p>
                               {/* <p className="text-white text-xs py-1 flex">Posted on: <p className="text-white bg-red-700">{moment(blog.createdAt.toDate()).add('days').calendar()}</p> </p> */}
 
                               <p class="cursor-default mb-[2.5rem] font-normal text-gray-700 dark:text-gray-400   to-transparent">

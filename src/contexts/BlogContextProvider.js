@@ -6,7 +6,7 @@ import {
   collection,
   serverTimestamp,
   query,
-  orderBy,
+  orderBy,onSnapshot
 } from "firebase/firestore";
 import { useNavigate } from "react-router";
 const BlogContextProvider = ({ children }) => {
@@ -39,9 +39,10 @@ const BlogContextProvider = ({ children }) => {
   }, []);
 
   //   Get blog data from Firestore database
+  // const blogs = await getDocs(query(blogRef, orderBy("createdAt", "desc")));
   const blogLi = async () => {
     try {
-      const blogs = await getDocs(query(blogRef, orderBy("createdAt", "desc")));
+      const blogs = await getDocs(blogRef);
       const filteredBlog = blogs.docs.map((blog) => ({
         ...blog.data(),
         id: blog.id,
@@ -49,11 +50,14 @@ const BlogContextProvider = ({ children }) => {
       setBlgData(filteredBlog);
       setIsLoading(false);
       console.log("current",currentPosts);
-      currentPosts();
+      // currentPosts();
     } catch (err) {
       console.error(err);
     }
   };
+
+  
+
 
   // redirect to login page
   const pleaseLogin = () => {

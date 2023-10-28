@@ -105,11 +105,11 @@ const Test = () => {
                       {currentPosts
                         .filter((sear) => {
                           return (
-                            search.toLowerCase() === ""
+                            search ===""
                               ? sear
-                              :  sear.Title.toLowerCase().includes(search) ||
-                            sear.Body.toLowerCase().includes(search) ||
-                            sear.User.toLowerCase().includes(search)
+                              :  sear.Title.includes(search) ||
+                            sear.Body.includes(search) ||
+                            sear.User.includes(search)
                           );
                         })
                         .map((blog) => (

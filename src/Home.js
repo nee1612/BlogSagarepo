@@ -84,7 +84,7 @@ const Test = () => {
                   </div>
                 </div>
                 <motion.div className="w-[9rem] mt-6 lmobile:mt-0 "   whileHover={{ scale: 1.1 }} >
-                <div className=" w-[17.5rem] smobile:w-[18rem]  my-3  py-2 rounded-r-full bg-blue-700 flex items-center gap-4 translate-x-[calc(-14.5rem+2vw)] hover:translate-x-[0]">
+                <div className=" w-[17.5rem] smobile:w-[18rem]  my-3  py-2 rounded-r-full bg-blue-700 flex items-center gap-4 translate-x-[calc(-14.5rem+1.9vw)] hover:translate-x-[0]">
                   <input
                     onChange={(e) => setSearch(e.target.value)}
                     type="text"
@@ -142,7 +142,7 @@ const Test = () => {
                                 {blog.Title}
                               </h5>
                               {/* <p className="text-white text-xs py-1 ">Posted on: {toDate(blog.createdAt)}</p> */}
-                              <p className="text-white text-xs py-1 ">Posted on: {blog.createdAt.toDate().toDateString()}</p>
+                              {/* <p className="text-white text-xs py-1 ">Posted on: {blog.createdAt.toDate().toDateString()}</p> */}
                               {/* <p className="text-white text-xs py-1 flex">Posted on: <p className="text-white bg-red-700">{moment(blog.createdAt.toDate()).add('days').calendar()}</p> </p> */}
 
                               <p class="cursor-default mb-[2.5rem] font-normal text-gray-700 dark:text-gray-400   to-transparent">

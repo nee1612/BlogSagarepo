@@ -60,11 +60,11 @@ const Test = () => {
           <div>
             <div className="">
               <div>
-                <div className=" relative flex  items-center flex-wrap align-middle justify-center sm:flex-nowrap mt-16 lmobile:mt-14 mx-auto lmobile:w-[100%] md:w-[45rem]  lg:w-[60rem] xl:w-[70rem] lg:max-w-6xl ">
+                <div className=" relative flex  items-center flex-wrap align-middle justify-center sm:flex-nowrap mt-16 mmobile:mt-[4rem] lmobile:mt-14 mx-auto lmobile:w-[100%] md:w-[45rem]  lg:w-[60rem] xl:w-[70rem] lg:max-w-6xl ">
                   <div className="  pl-2 mmobile:pl-4 lmobile:pl-3 ">
                     <div
-                      className=" cursor-default top-[-0.5rem] smobile:top-[-1.5rem] mmobile:top-[-1  rem] h-[28%] smobile:h-[33%] mmobile:h-[35%] lmobile:h-[37%] sm:h-[70%] md:h-[90%] lg:h-[78%]    sm:top-[1rem] md:top-[1rem] lg:top-[3rem] w-[5.5rem] 
-                    smobile:w-[5.5rem] mmobile:w-[7rem] sm:w-[7rem] md:w-[8.5rem] lg:w-[11.5rem]   absolute"
+                      className=" cursor-default top-[-0.5rem] smobile:top-[-1.5rem] mmobile:top-[-1rem] h-[28%] smobile:h-[33%] mmobile:h-[35%] lmobile:h-[37%] sm:h-[70%] md:h-[90%] lg:h-[78%]    sm:top-[1rem] md:top-[1rem] lg:top-[3rem] w-[5.5rem] 
+                    smobile:w-[5.5rem] mmobile:w-[7rem] sm:w-[7rem] md:w-[8.5rem] lg:w-[11.5rem] lmobile:block hidden  absolute"
                     >
                       <Lottie options={defaultOptions3} />
                     </div>

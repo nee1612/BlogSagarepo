@@ -10,9 +10,6 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-       - name: Build Application
-        run: npm install --force && npm run build
-        
       - uses: actions/checkout@v3
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

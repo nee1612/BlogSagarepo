@@ -27,7 +27,7 @@ const Navbar = ({ click }) => {
   return (
     <div>
    
-    <div class="top-0 z-40 w-full  border-b shadow-md border-gray-300 bg-white  fixed py-1">
+    <div class="top-0 z-40 w-full  border-b shadow-md border-gray-300 bg-white  fixed py-1 ">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div class="inline-flex items-center space-x-2 pt-2 md:pt-0 ">
           <span
@@ -112,7 +112,7 @@ const Navbar = ({ click }) => {
             </div>
           )}
         </div>
-        <div onClick={click} class="md:hidden absolute top-7 right-4 z-50">
+        <div onClick={click} class="md:hidden absolute top-7 right-4 z-40">
           <FaBars size={22} />
         </div>
         {/* <TTR/> */}

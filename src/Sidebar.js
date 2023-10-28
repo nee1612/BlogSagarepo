@@ -31,7 +31,8 @@ const logOut = async () => {
   };
     
     return ( 
-        <div className="absolute top-0 right-0 z-40 ">
+        <div className="  ">
+        <div className="fixed top-0  right-0 z-50  ">
             <div className={isOpen? "translate-y-0 w-60":"hidden"}>
             {/* <div animate={{width:isOpen?"250px":}} className="md:hidden h-screen bg-blue-950"> */}
             <div className="md:hidden  h-screen bg-black ">
@@ -118,6 +119,7 @@ const logOut = async () => {
             </section>
             </div>
             </div>
+        </div>
         </div>
      );
 }

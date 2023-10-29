@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BlogContext from "./contexts/BlogContext";
 import Lottie from "react-lottie";
 import Loading from "./Loading";
@@ -17,8 +17,7 @@ import search_icon from "./assets/search.json";
 import { motion} from "framer-motion"; 
 
 const Test = () => {
-  const { isLoading } = useContext(BlogContext);
-  const { currentPosts } = useContext(BlogContext);
+  const { currentPosts,isLoading,updateVariableFunc } = useContext(BlogContext);
   const [search,setSearch] = useState("");
 
   const defaultOptions = {
@@ -53,6 +52,9 @@ const Test = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+  useEffect(()=>{
+    updateVariableFunc();
+  },[])
   return (
     <div className="">
       {!isLoading && (

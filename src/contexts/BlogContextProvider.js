@@ -4,9 +4,8 @@ import { blogData, getCurrentUser, auth } from "../config/firebase";
 import {
   getDocs,
   collection,
-  serverTimestamp,
   query,
-  orderBy,onSnapshot
+  orderBy
 } from "firebase/firestore";
 import { useNavigate } from "react-router";
 const BlogContextProvider = ({ children }) => {
@@ -70,6 +69,7 @@ const BlogContextProvider = ({ children }) => {
   };
   useEffect(() => {
     blogLi();
+    // currentPosts();
   }, [updateVariable]);
 
   return (

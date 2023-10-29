@@ -1,7 +1,6 @@
-
 {
   "hosting": {
-    "site":"blogtest12",
+    "site": "blogsaga-iiitb",
     "public": "build", 
     "rewrites": [
       {
@@ -11,4 +10,3 @@
     ]
   }
 }
-

@@ -98,8 +98,8 @@ const Test = () => {
                   </div>
                 </div>
                 </motion.div> 
-                <div className="pt-5 mmobile:pt-4 ">
-                  <div className=" flex justify-center ">
+                <div className="pt-5 mmobile:pt-4   relative overflow-hidden">
+                  <div className=" flex justify-center   relative overflow-hidden pb-[3rem]">
                     <div className="cursor-default absolute  hidden xl:flex 2xl:hidden  z-0 ">
                       <Lottie animationData={background1} loop={true} className="w-[98rem]" />
                     </div>

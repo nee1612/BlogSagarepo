@@ -20,7 +20,7 @@ const Loading = () => {
     // </div>
     <div className='flex justify-center mt-44'>
       <div className='w-[25rem]'>
-          <Lottie animationData={loading} width={450}/>
+          <Lottie animationData={loading} loop={true} />
       </div>
     </div>
   )

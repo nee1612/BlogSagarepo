@@ -99,9 +99,9 @@ const Test = () => {
                 </div>
                 </motion.div> 
                 <div className="pt-5 mmobile:pt-4 ">
-                  <div className=" flex justify-center  ">
-                    <div className="cursor-default absolute hidden lg:block  z-0 md:h-[50rem] lg:h-[55rem]  ">
-                      <Lottie animationData={background1} loop={true} />
+                  <div className=" flex justify-center ">
+                    <div className="cursor-default absolute  hidden xl:flex 2xl:hidden  z-0 ">
+                      <Lottie animationData={background1} loop={true} className="w-[98rem]" />
                     </div>
                     <div className=" flex flex-wrap justify-center  gap-10 mx-10   z-10  sm:mt-10 md:mt-16 lg:mt-10 ">
                       {currentPosts

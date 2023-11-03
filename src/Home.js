@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import BlogContext from "./contexts/BlogContext";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import Loading from "./Loading";
 import { BiSolidQuoteRight } from "react-icons/bi";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
@@ -68,7 +68,7 @@ const Test = () => {
                       className=" cursor-default top-[-0.5rem] smobile:top-[-1.5rem] mmobile:top-[-1rem] h-[28%] smobile:h-[33%] mmobile:h-[35%] lmobile:h-[37%] sm:h-[70%] md:h-[90%] lg:h-[78%]    sm:top-[1rem] md:top-[1rem] lg:top-[3rem] w-[5.5rem] 
                     smobile:w-[5.5rem] mmobile:w-[7rem] sm:w-[7rem] md:w-[8.5rem] lg:w-[11.5rem] lmobile:block hidden  absolute"
                     >
-                      <Lottie options={defaultOptions3} />
+                      <Lottie animationData={hero} loop={true} />
                     </div>
                     <h1 className=" cursor-default mt-5 lmobile:mt-10  lmobile:my-5 md:my-8  font-bold  text-black text-2xl mmobile:text-3xl md:text-4xl lg:text-5xl font-[Merriweather]">
                       Express Yourself
@@ -81,7 +81,7 @@ const Test = () => {
                   </div>
                   <div className=" mmobile:pt-3">
                     <div className="cursor-default smobile:mt-2 w-[13rem] smobile:w-[18rem] mmobile:w-[20rem] lmobile:w-[16rem] md:w-[18rem] lg:w-[25rem] ">
-                      <Lottie options={defaultOptions} />
+                      <Lottie animationData={header1} loop={true}  />
                     </div>
                   </div>
                 </div>
@@ -93,15 +93,15 @@ const Test = () => {
                     placeholder="Search"
                     className="  ml-3 rounded-sm border border-gray-300  px-6 py-[4px]  text-sm placeholder:px-0 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                   />
-                  <div >
-                  <Lottie options={search_lottie} width={40} />
+                  <div className="w-[2.5rem]">
+                  <Lottie animationData={search_icon} loop={true} />
                   </div>
                 </div>
                 </motion.div> 
                 <div className="pt-5 mmobile:pt-4 ">
                   <div className=" flex justify-center  ">
                     <div className="cursor-default absolute hidden lg:block  z-0 md:h-[50rem] lg:h-[55rem]  ">
-                      <Lottie options={defaultOptions2} />
+                      <Lottie animationData={background1} loop={true} />
                     </div>
                     <div className=" flex flex-wrap justify-center  gap-10 mx-10   z-10  sm:mt-10 md:mt-16 lg:mt-10 ">
                       {currentPosts

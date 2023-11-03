@@ -1,25 +1,9 @@
 import React from "react";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import aboutLottie from "./assets/AboutUs.json";  
 
 const About = () => {
 
-  const defaultOptions = {
-    loop: false,
-    autoplay: false,
-    animationData: aboutLottie,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-    // const defaultOptions = {
-    //     loop: true,
-    //     autoplay: true, 
-    //     animationData: aboutLottie,
-    //     rendererSettings: {
-    //       preserveAspectRatio: 'xMidYMid slice'
-    //     }
-    //   };  
     return ( 
         <div>
             <section class="px-2 py-10 md:px-0 mt-[10%]">

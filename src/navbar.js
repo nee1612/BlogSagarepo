@@ -31,7 +31,7 @@ const Navbar = ({ click }) => {
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div class="inline-flex items-center space-x-2 pt-2 md:pt-0 ">
           <span
-            class="font-bold text-3xl cursor-pointer"
+            class="font-bold text-3xl cursor-pointer  tap-transparent"
             onClick={() => {
               history("/");
             }}
@@ -44,7 +44,7 @@ const Navbar = ({ click }) => {
           <ul class="ml-12 inline-flex space-x-10 my-[5px] ">
             <li >
               <Link
-                className=" hover:border-b-[2px] border-purple-700 inline-flex items-center text-sm font-bold text-gray-800 hover:text-gray-900 "
+                className=" tap-transparent hover:border-b-[2px] border-purple-700 inline-flex items-center text-sm font-bold text-gray-800 hover:text-gray-900 "
                 to="/"
               >
                Home
@@ -52,7 +52,7 @@ const Navbar = ({ click }) => {
             </li>
             <li>
               <Link
-                class="hover:border-b-[2px] border-purple-700 inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+                class=" tap-transparent hover:border-b-[2px] border-purple-700 inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
                 to="/about"
               >
                 About
@@ -62,7 +62,7 @@ const Navbar = ({ click }) => {
               refToken && 
             <li>
               <Link
-                class="hover:border-b-[2px] border-purple-700 inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+                class=" tap-transparent hover:border-b-[2px] border-purple-700 inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
                 to="/add"
               >
                 Add Blog
@@ -76,7 +76,7 @@ const Navbar = ({ click }) => {
         </motion.div>
         <div class="hidden space-x-2 md:block">
           {refToken ? (
-            <button onClick={logOut} className="inline-flex w-full items-center justify-center rounded-sm bg-slate-800  px-3.5 py-1 font-medium leading-6 text-white hover:bg-black/80">
+            <button onClick={logOut} className=" tap-transparent inline-flex w-full items-center justify-center rounded-sm bg-slate-800  px-3.5 py-1 font-medium leading-6 text-white hover:bg-black/80">
               Logout
             </button>
           ) : (
@@ -88,7 +88,7 @@ const Navbar = ({ click }) => {
                   borderRadius: "100%"
                 }}>
                 <Link
-                  class="rounded-md bg-transparent px-3 py-2  text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  class=" tap-transparent rounded-md bg-transparent px-3 py-2  text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   to="/register"
                 >
                   Sign In
@@ -102,7 +102,7 @@ const Navbar = ({ click }) => {
                   borderRadius: "100%"
                 }}>
                 <Link
-                  class="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  class=" tap-transparent rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   to="/login"
                 >
                   Log In
@@ -112,7 +112,7 @@ const Navbar = ({ click }) => {
             </div>
           )}
         </div>
-        <div onClick={click} class="md:hidden absolute top-7 right-4 z-40">
+        <div onClick={click} class=" tap-transparent md:hidden absolute top-7 right-4 z-40">
           <FaBars size={22} />
         </div>
         {/* <TTR/> */}

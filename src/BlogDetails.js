@@ -126,14 +126,7 @@ const TestDetail = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: conv,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  
   useEffect(() => {
     if (authState === undefined) {
       pleaseLogin();

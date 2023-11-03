@@ -1,6 +1,6 @@
 import React from "react";
 import { useState,useEffect } from "react";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import Top from "./assets/topButtonn.json";
 
 const BackToTop = () => {
@@ -35,7 +35,7 @@ const BackToTop = () => {
                         
                     <div className=" z-40  w-[50px]  h-[50px]  fixed bottom-[50px] right-[30px]    " onClick={scrollUp}>
                        <div className="w-[100%] absolute bg-opacity-90 backdrop-blur-sm rounded-full bg-slate-800  z-50 ">
-                        <Lottie   options={defaultOptions}   />
+                        <Lottie   animationData={Top} loop={true}   />
                        </div>
                     </div>
                 )

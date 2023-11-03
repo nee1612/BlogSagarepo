@@ -9,7 +9,7 @@ import React, { useContext } from "react";
 import { useState} from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import signUpLottie from "./assets/signup.json"
 import googleLog from "./assets/google.json"
 import loginBg from "./assets/login bg.json"
@@ -102,7 +102,7 @@ const defaultOptions2 = {
     <div className="h-full  w-full">
       <div className="flex justify-center  lg:hidden mt-7">
         <div className="flex justify-center w-[50%]">
-        <Lottie options={defaultOptions1} />
+        <Lottie options={signUpLottie} loop={true} />
         </div>
       </div>
           {/* jbm */}
@@ -225,8 +225,8 @@ const defaultOptions2 = {
                   type="button"
                   className="relative inline-flex h-12 w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
                    onClick={SignInWithGoogle}>
-                  <span className="mr-2 inline-block">
-                      <Lottie className="lottieGoogle" options={defaultOptions2} width={50}/>
+                  <span className="mr-2 inline-block w-[3.2rem]">
+                      <Lottie className="lottieGoogle" animationData={googleLog} loop={true}/>
                   </span>
                   Sign up with Google
                 </button>
@@ -236,7 +236,7 @@ const defaultOptions2 = {
           </div>
           <div className="h-full mt-8 w-full">
               <div className="hidden lg:flex w-[500px]  ">
-                   <Lottie options={defaultOptions1}  />
+                   <Lottie animationData={signUpLottie} loop={true}  />
               </div>
           </div>
         </div>

@@ -15,5 +15,15 @@ module.exports = {
       '2xl': '1536px',
   },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.tap-transparent': {
+          '-webkit-tap-highlight-color': 'transparent',
+        },
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+  ],
 }

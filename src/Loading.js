@@ -1,6 +1,5 @@
 import React from 'react';
-import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
-import Lottie from 'react-lottie';
+import Lottie from 'lottie-react';
 import loading from "./assets/loading.json";
 
 const Loading = () => {
@@ -20,7 +19,9 @@ const Loading = () => {
     //   />
     // </div>
     <div className='flex justify-center mt-44'>
-<  Lottie options={defaultOptions} width={450}/>
+      <div className='w-[25rem]'>
+          <Lottie animationData={loading} width={450}/>
+      </div>
     </div>
   )
 }

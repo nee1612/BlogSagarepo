@@ -4,7 +4,7 @@ import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
 import { blogData, auth, getCurrentUser, userData } from "./config/firebase";
 import { useNavigate } from "react-router-dom";
 import BlogContext from "./contexts/BlogContext";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import blog from "./assets/blog.json";
 import Loading from "./Loading";
 import { Typewriter } from "react-simple-typewriter";
@@ -103,7 +103,7 @@ const Addtest = () => {
                 
             </div>
             <div className="hidden sm:flex w-[350px] md:w-[450px]">
-            <Lottie   options={defaultOptions} />
+            <Lottie   animationData={blog} loop={true} />
             </div>
           </div>
        </div>

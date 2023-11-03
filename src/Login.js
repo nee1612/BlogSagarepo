@@ -9,7 +9,7 @@ import { BsFillArrowRightCircleFill} from "react-icons/bs";
 import Logo from './assets/logo_transparent.png';
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import Loading from "./Loading";
 import loginLottie from "./assets/Login.json"
 import loginBg from "./assets/login bg.json"
@@ -53,31 +53,7 @@ const Login = () => {
       console.error(err);
     }
   };
-//   Lottie Animation
-const defaultOptions = {
-    loop: true,
-    autoplay: true, 
-    animationData: loginLottie,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
-  };
-const defaultOptions1 = {
-    loop: true,
-    autoplay: true, 
-    animationData: loginBg,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
-};
-const defaultOptions2 = {
-    loop: true,
-    autoplay: true, 
-    animationData: googleLog,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
-};
+
     return (
       <div> 
               {!isLoading && (
@@ -86,7 +62,7 @@ const defaultOptions2 = {
             <div className="grid  lg:grid-cols-2">
               <div className=" w-[100%] ">
                 <div>
-                  <Lottie  options={defaultOptions} />
+                  <Lottie  animationData={loginLottie} loop={true} />
                 </div>
               </div>
               {/* <div className="hidden sm:flex">
@@ -164,8 +140,8 @@ const defaultOptions2 = {
                             type="submit"
                             className="relative inline-flex h-12 w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
                             onClick={SignInWithGoogle}>
-                            <span className="mr-2 inline-block">
-                                <Lottie className="lottieGoogle" options={defaultOptions2} width={50}/>
+                            <span className="mr-2 inline-block w-[3.2rem]">
+                                <Lottie className="lottieGoogle" animationData={googleLog} loop={true} />
                             </span>
                             Sign in with Google
                           </button>

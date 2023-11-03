@@ -2,25 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import PageNotFound from "./assets/404NotFound.json";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 const NotFound = () => {
   const history = useNavigate();
   
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: PageNotFound,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
     return ( 
        <div className="flex justify-center">
         {
           
         }
-        <div className="w-[50%]  " onClick={()=>history("/")}>
-           <Lottie options={defaultOptions} />
+        <div className="flex justify-center items-center mt-[7rem]">
+        <div className="w-[90%]" onClick={()=>history("/")}>
+           <Lottie animationData={PageNotFound} loop={true} />
+        </div>
         </div>
         {/* <Link to="/">Go to homepage....</Link> */}
        </div>

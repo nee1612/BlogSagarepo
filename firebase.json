@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "blogsaga-iiitb",
+    "site":"blogsaga-iiitb",
     "public": "build", 
     "rewrites": [
       {

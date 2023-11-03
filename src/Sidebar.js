@@ -38,12 +38,12 @@ const logOut = async () => {
             <div className="md:hidden  h-screen bg-black ">
                 <div className="flex  justify-between items-center  px-3 py-5">
                     <div>
-                       {isOpen &&  <p  className="text-3xl white-space:nowrap text-white">
+                       {isOpen &&  <p  className=" tap-transparent text-3xl white-space:nowrap text-white">
                         𝕭𝖑𝖔𝖌𝕾𝖆𝖌𝖆
                         </p>}
                     </div>
-                    <div className="pr-2 text-xl white-space:nowrap ">
-                        {/* <FaBars onClick={toggle} style={{fill:"white"}}/> */}
+                    <div className=" tap-transparent pr-2 text-xl white-space:nowrap ">
+                        {/* <FaBars onClick={toggle}  tap-transparent /> */}
                     </div>
                 </div>
             <section>
@@ -61,11 +61,11 @@ const logOut = async () => {
                         </NavLink>
                     </div>
                 ))} */}
-                <div className="flex gap-6 items-center pl-5  px-4 py-5 hover:border-r-2 border-white ">
+                <div className=" tap-transparent flex gap-6 items-center pl-5  px-4 py-5 hover:border-r-2 border-white ">
                     <Link to="/">
-                    <div  className="white-space:nowrap flex items-center gap-6">
+                    <div  className=" tap-transparent white-space:nowrap flex items-center gap-6">
                         <div><FaHome size={22} style={{fill:"white"}}/></div>
-                        <p className="text-lg flex white-space:nowrap  text-white font-semibold">Home</p>
+                        <p className=" tap-transparent text-lg flex white-space:nowrap  text-white font-semibold">Home</p>
                     </div>
                     </Link>
                 </div>
@@ -77,15 +77,15 @@ const logOut = async () => {
                                 <Link to="/add">
                                 <div  className="white-space:nowrap flex items-center gap-6">
                                     <div><BiMessageAdd size={22} style={{fill:"white"}}/></div>
-                                    <p className="text-lg flex white-space:nowrap  text-white font-semibold">Add Blog</p>
+                                    <p className="tap-transparent text-lg flex white-space:nowrap  text-white font-semibold">Add Blog</p>
                                 </div>
                                 </Link>
                             </div>
-                        <div className="flex gap-6 items-center pl-5  px-4 py-5 hover:border-r-2 border-white  " onClick={logOut}>
+                        <div className="tap-transparent flex gap-6 items-center pl-5  px-4 py-5 hover:border-r-2 border-white  " onClick={logOut}>
                                 <Link  to="/">
                                 <div  className="white-space:nowrap flex items-center gap-6">
                                     <div><LuLogOut size={22} style={{fill:"white"}}/></div>
-                                    <p className="text-lg flex white-space:nowrap  text-white font-semibold">Logout</p>
+                                    <p className="tap-transparent text-lg flex white-space:nowrap  text-white font-semibold">Logout</p>
                                 </div>
                                 </Link>
                         </div>

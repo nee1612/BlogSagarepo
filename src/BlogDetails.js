@@ -130,6 +130,11 @@ const TestDetail = () => {
   useEffect(() => {
     if (authState === undefined) {
       pleaseLogin();
+      // window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     } else {
       if (blgData.length !== 0) {
         setBlog(filteredDataById(id));

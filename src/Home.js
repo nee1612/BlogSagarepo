@@ -17,7 +17,7 @@ import search_icon from "./assets/search.json";
 import { motion} from "framer-motion"; 
 
 const Test = () => {
-  const { currentPosts,isLoading,updateVariableFunc } = useContext(BlogContext);
+  const { blgData,currentPosts,isLoading,updateVariableFunc } = useContext(BlogContext);
   const [search,setSearch] = useState("");
 
   const defaultOptions = {
@@ -104,7 +104,7 @@ const Test = () => {
                       <Lottie animationData={background1} loop={true} className="w-[98rem]" />
                     </div>
                     <div className=" flex flex-wrap justify-center  gap-10 mx-10   z-10  sm:mt-10 md:mt-16 lg:mt-10 ">
-                      {currentPosts
+                      {currentPosts 
                         .filter((sear) => {
                           return (
                             search ===""
@@ -148,7 +148,7 @@ const Test = () => {
                               {/* <p className="text-white text-xs py-1 flex">Posted on: <p className="text-white bg-red-700">{moment(blog.createdAt.toDate()).add('days').calendar()}</p> </p> */}
 
                               <p class="cursor-default mb-[2.5rem] font-normal text-gray-700 dark:text-gray-400   to-transparent">
-                                {blog.Body.slice(0, 100)}
+                                {blog.Body.slice(0, 100)}...
                               </p>
                                      <div className="  cursor-pointer my-3 absolute bottom-[5px] inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-800 rounded-sm hover:bg-emerald-700 ">
                                     <Link

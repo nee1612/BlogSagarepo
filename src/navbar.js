@@ -71,14 +71,19 @@ const Navbar = ({ click }) => {
             }
           </ul>
         </div>
-        <motion.div>
-
-        </motion.div>
+        
         <div class="hidden space-x-2 md:block">
           {refToken ? (
+            <motion.div  whileHover={{ scale: 1.1  }}
+            whileTap={{
+              scale: 1,
+              borderRadius: "100%"
+            }}>
             <button onClick={logOut} className=" tap-transparent inline-flex w-full items-center justify-center rounded-sm bg-slate-800  px-3.5 py-1 font-medium leading-6 text-white hover:bg-black/80">
               Logout
+                
             </button>
+            </motion.div>
           ) : (
             <div>
               <button className="pr-2">

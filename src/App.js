@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogContextProvider from "./contexts/BlogContextProvider";
-import { auth } from "./config/firebase";
 import Navbar from "./navbar";
 import Home from "./Home";
 import BlogDetails from "./BlogDetails";
@@ -14,8 +13,6 @@ import Cookies from "universal-cookie";
 import Sidebar from "./Sidebar";
 import Backdrop from "./Backdrop";
 import About from "./About";
-
-const cookies = new Cookies();
 
 function App() {
   // const [userName, setUserName] = useState("");
@@ -38,7 +35,7 @@ function App() {
       <BlogContextProvider>
       <div className="App ">
           <Navbar click={toggle} />
-          <Sidebar isOpen={isOpen}/>
+          <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
           <Backdrop  click={toggle} isOpen={isOpen}/>
         <div className="content">
           <Routes>

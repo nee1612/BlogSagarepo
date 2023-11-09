@@ -8,10 +8,10 @@ import {auth} from "./config/firebase"
 import { signOut } from "firebase/auth";
 import BlogContext from "./contexts/BlogContext";
 import Cookies from "universal-cookie";
-import { motion} from "framer-motion";
+
 const cookies = new Cookies();
 
-const Sidebar = ({isOpen}) => {
+const Sidebar = ({isOpen},{setIsOpen}) => {
     // const[isOpen,setIsOpen]=useState(false);
     // const toggle=()=>setIsOpen(!isOpen);
     const {updateVariableFunc}=useContext(BlogContext);
@@ -32,11 +32,11 @@ const logOut = async () => {
     
     return ( 
         <div className="  ">
-        <div className="fixed top-0  right-0 z-50  ">
+        <div className="fixed top-0  right-0 z-50 backdrop-blur-md  ">
             <div className={isOpen? "translate-y-0 w-60":"hidden"}>
             {/* <div animate={{width:isOpen?"250px":}} className="md:hidden h-screen bg-blue-950"> */}
-            <div className="md:hidden  h-screen bg-black ">
-                <div className="flex  justify-between items-center  px-3 py-5">
+            <div className="md:hidden  h-screen bg-black opacity-80  ">
+                <div className="flex  justify-between items-center  px-3 py-5 ">
                     <div>
                        {isOpen &&  <p  className=" tap-transparent text-3xl white-space:nowrap text-white">
                         𝕭𝖑𝖔𝖌𝕾𝖆𝖌𝖆

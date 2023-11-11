@@ -140,14 +140,14 @@ const Test = () => {
                                   </p>
                                 </div>
                               </div>
-                              <h5 class="cursor-default mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">
+                              <h5 class="cursor-default mb-2 text-2xl font-bold tracking-tight text-white ">
                                 {blog.Title}
                               </h5>
                               {/* <p className="text-white text-xs py-1 ">Posted on: {toDate(blog.createdAt)}</p> */}
                               {/* <p className="text-white text-xs py-1 ">Posted on: {blog.createdAt.toDate().toDateString()}</p> */}
                               {/* <p className="text-white text-xs py-1 flex">Posted on: <p className="text-white bg-red-700">{moment(blog.createdAt.toDate()).add('days').calendar()}</p> </p> */}
 
-                              <p class="cursor-default mb-[2.5rem] font-normal text-gray-700 dark:text-gray-400   to-transparent">
+                              <p class="cursor-default mb-[2.5rem] font-normal text-gray-400   to-transparent">
                                 {blog.Body.slice(0, 100)}...
                               </p>
                                      <div className="  cursor-pointer my-3 absolute bottom-[5px] inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-800 rounded-sm hover:bg-emerald-700 ">

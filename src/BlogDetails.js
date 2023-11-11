@@ -154,7 +154,7 @@ const TestDetail = () => {
                     <div className="flex items-center justify-center  ">
                       <div className=" w-[90%] mx-3 mt-24  p-6 rounded-lg  bg-gray-800 shadow-lg hover:shadow-xl  hover:transition-all relative">
                         {/* <div className="  min-w-[280px] mx-3 lg:w-[600px] mt-4 max-w-[900px] p-6 rounded-lg  bg-gray-800 shadow-md hover:shadow-xl  hover:transition-all relative"> */}
-                        <h5 className="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h5 className="mb-2 text-3xl font-bold tracking-tight text-white">
                           {blog.Title}
                         </h5>
                         <div className="py-2 flex items-center gap-2">

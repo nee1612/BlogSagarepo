@@ -11,7 +11,7 @@ const NotFound = () => {
         {
           
         }
-        <div className="flex justify-center items-center mt-[7rem]">
+        <div className="flex justify-center items-center mt-[7rem] ">
         <div className="w-[90%]" onClick={()=>history("/")}>
            <Lottie animationData={PageNotFound} loop={true} />
         </div>

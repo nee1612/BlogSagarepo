@@ -15,11 +15,12 @@ import Login from "./Login";
 import { blogData, getCurrentUser, db, auth } from "./config/firebase";
 import BlogContext from "./contexts/BlogContext";
 import Loading from "./Loading";
-import moment from "moment";
+
 import conversation from "./assets/conversation.json";
-import { RiDeleteBin7Fill } from "react-icons/ri";
+
 import conv from "./assets/conv.json";
 import Cookies from "universal-cookie";
+import Comment from "./Comment";
 const cookies = new Cookies();
 
 const TestDetail = () => {
@@ -126,21 +127,17 @@ const TestDetail = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  
+
   useEffect(() => {
     if (authState === undefined) {
       pleaseLogin();
-      // window.scrollTo(0, 0);
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
     } else {
       if (blgData.length !== 0) {
         setBlog(filteredDataById(id));
       }
     }
   }, [id, blgData]);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -149,10 +146,28 @@ const TestDetail = () => {
           <div>
             {!isLoading && (
               <div className="">
+                <div className="  mt-20 pl-14">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="rgb(31, 41, 55)"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-chevron-left"
+                    className="cursor-pointer"
+                    onClick={() => navigate("/")}
+                  >
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </div>
                 {blog !== null && (
                   <div classNameName=" ">
                     <div className="flex items-center justify-center  ">
-                      <div className=" w-[90%] mx-3 mt-24  p-6 rounded-lg  bg-gray-800 shadow-lg hover:shadow-xl  hover:transition-all relative">
+                      <div className=" w-[90%] mx-3 mt-5 p-6 rounded-lg  bg-gray-800 shadow-lg hover:shadow-xl  hover:transition-all relative">
                         {/* <div className="  min-w-[280px] mx-3 lg:w-[600px] mt-4 max-w-[900px] p-6 rounded-lg  bg-gray-800 shadow-md hover:shadow-xl  hover:transition-all relative"> */}
                         <h5 className="mb-2 text-3xl font-bold tracking-tight text-white">
                           {blog.Title}
@@ -191,91 +206,14 @@ const TestDetail = () => {
             )}
           </div>
           {/* Chat section */}
-          <div className=" flex justify-center mt-3  ">
-            <div className=" shadow-lg w-[calc(100%-10%)] rounded-md">
-              <div className="flex justify-center  mt-4">
-                <p className="w-[100%]  px-4 sm:p-3 font-black text-xl sm:text-2xl md:text-3xl font-mono">
-                  Add a new Comment
-                </p>
-              </div>
-              <div className="flex items-center justify-center   ">
-                <form
-                  onSubmit={handleSubmit}
-                  className=" w-[100%]  sm:flex sm:gap-2  p-3 "
-                >
-                  <input
-                    type="text"
-                    value={newMessage}
-                    onChange={(event) => setNewMessage(event.target.value)}
-                    className="sm:flex-1 w-full  border-solid border-black border-2 rounded-lg  outline-none bg-transparent text-xs text-gray-800 p-3 my-2"
-                    placeholder="Type your comments here..."
-                  />
-                  <button
-                    type="submit"
-                    className="border-none outline-none bg-black text-base text-white   font-semibold sm:font-bold sm:py-0 my-2 py-1 px-5  rounded-md    sm:rounded-lg"
-                  >
-                    Post Comment
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-center mt-6 border-b-[1px] border-gray-300 pb-5 ">
-            <div className="w-[90%] ">
-              <p className=" pl-2 font-bold text-3xl font-mono">Comments...</p>
-            </div>
-          </div>
-          <div className="">
-            <div className=" flex justify-center  rounded-md  mt-4  z-0  ">
-              <div className="flex justify-center w-[100%]">
-                <div className="h-[100%] overflow-y-auto p-3">
-                  {messages.map((message) => (
-                    <div key={message.id} className=" flex-col  ">
-                      <p className="font-bold flex items-start   gap-1   ">
-                        <div className="flex items-start gap-3 mt-2 pb-4 ">
-                          <div className="pt-2">
-                            {message.photoURL ? (
-                              <img
-                                className="rounded-full w-[25px]  sm:w-7  "
-                                src={message.photoURL}
-                              />
-                            ) : (
-                              <div className="w-[24px] h-[25px] sm:w-7   sm:h-7  flex justify-center items-center border-[1px] border-gray-300 rounded-full bg-white text-black text-sm sm:text-lg font-bold">
-                                {message.user[0].toUpperCase()}
-                              </div>
-                            )}
-                          </div>
-                          <div className="w-[calc(100vw-90px)] lmobile:w-[calc(100vw-80px)] sm:w-[calc(100vw-100px)] md:w-[calc(100vw-120px)] lg:w-[calc(100vw-180px)] xl:w-[calc(100vw-160px)] 2xl:w-[calc(100vw-200px)]  ">
-                            <div className="border-[1.5px] rounded-md border-gray-200 bg-slate-100  shadow-sm ">
-                              <div className=" flex  items-center gap-2 text-lg sm:text-xl px-2 pt-2 ">
-                                {message.user}:
-                                <p className="font-medium text-sm">
-                                  {message.createdAt !== null
-                                    ? moment(
-                                        message.createdAt.toDate()
-                                      ).fromNow()
-                                    : "a few seconds ago"}
-                                </p>
-                                {message.userId === currentUser.uid && (
-                                  <RiDeleteBin7Fill
-                                    style={{ fill: "black" }}
-                                    onClick={() => handleDeleteC(message.id)}
-                                  />
-                                )}
-                              </div>
-                              <div className="text-base font-medium  p-2">
-                                {message.text}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Comment
+            messages={messages}
+            handleSubmit={handleSubmit}
+            newMessage={newMessage}
+            setNewMessage={setNewMessage}
+            handleDeleteC={handleDeleteC}
+            currentUser={currentUser}
+          />
         </div>
       )}
       {!refToken && <Login />}

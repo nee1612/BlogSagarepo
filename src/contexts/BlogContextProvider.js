@@ -27,7 +27,7 @@ const BlogContextProvider = ({ children }) => {
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = blgData.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const [test,setTest]=useState('');
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -91,7 +91,7 @@ const BlogContextProvider = ({ children }) => {
         totalPost,
         paginate,
         currentPage,
-        setCurrentPage,
+        setCurrentPage,test,setTest
       }}
     >
       {children}

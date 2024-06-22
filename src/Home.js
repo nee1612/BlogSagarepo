@@ -12,54 +12,32 @@ import { Typewriter } from "react-simple-typewriter";
 import Pagination from "./Pagination";
 import Logo from "./assets/logo_transparent_dark.png";
 import BackToTop from "./BackToTop";
-import moment from 'moment';
+import moment from "moment";
 import search_icon from "./assets/search.json";
-import { motion} from "framer-motion"; 
+import { motion } from "framer-motion";
 
 const Test = () => {
-  const { blgData,currentPosts,isLoading,updateVariableFunc } = useContext(BlogContext);
-  const [search,setSearch] = useState("");
+  const {
+    blgData,
+    currentPosts,
+    isLoading,
+    updateVariableFunc,
+    test,
+    setTest,
+  } = useContext(BlogContext);
+  const [search, setSearch] = useState("");
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: header1,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-  const defaultOptions2 = {
-    loop: true,
-    autoplay: true,
-    animationData: background1,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-  const defaultOptions3 = {
-    loop: true,
-    autoplay: true,
-    animationData: hero,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-  const search_lottie = {
-    loop: true,
-    autoplay: true,
-    animationData: search_icon,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-  useEffect(()=>{
+  useEffect(() => {
     updateVariableFunc();
-  },[])
+    setTest("start");
+    console.log("test123", test);
+  }, []);
+
   return (
     <div className="">
       {!isLoading && (
-        <div>
-          <div>
+        <div className=" ">
+          <div className="mx-auto max-w-[90rem]">
             <div className="">
               <div>
                 <div className=" relative flex  items-center flex-wrap align-middle justify-center sm:flex-nowrap mt-16 mmobile:mt-[4rem] lmobile:mt-14 mx-auto lmobile:w-[100%] md:w-[45rem]  lg:w-[60rem] xl:w-[70rem] lg:max-w-6xl ">
@@ -81,38 +59,43 @@ const Test = () => {
                   </div>
                   <div className=" mmobile:pt-3">
                     <div className="cursor-default smobile:mt-2 w-[13rem] smobile:w-[18rem] mmobile:w-[20rem] lmobile:w-[16rem] md:w-[18rem] lg:w-[25rem] ">
-                      <Lottie animationData={header1} loop={true}  />
+                      <Lottie animationData={header1} loop={true} />
                     </div>
                   </div>
                 </div>
-                <motion.div className="w-[9rem] mt-6 lmobile:mt-0 "   whileHover={{ scale: 1.1 }} >
-                <div className=" w-[17.5rem] smobile:w-[18rem]  my-3  py-2 rounded-r-full bg-blue-700 flex items-center gap-4 translate-x-[calc(-14.5rem+1.9vw)] hover:translate-x-[0]">
-                  <input
-                    onChange={(e) => setSearch(e.target.value)}
-                    type="text"
-                    placeholder="Search"
-                    className="  ml-3 rounded-sm border border-gray-300  px-6 py-[4px]  text-sm placeholder:px-0 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                  />
-                  <div className="w-[2.5rem]">
-                  <Lottie animationData={search_icon} loop={true} />
+                <motion.div
+                  className="w-[9rem] mt-6 lmobile:mt-0 "
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <div className=" w-[17.5rem] smobile:w-[18rem]  my-3  py-2 rounded-r-full bg-blue-700 flex items-center gap-4 translate-x-[calc(-14.5rem+1.9vw)] hover:translate-x-[0] ">
+                    <input
+                      onChange={(e) => setSearch(e.target.value)}
+                      type="text"
+                      placeholder="Search"
+                      className="  ml-3 rounded-sm border border-gray-300  px-6 py-[4px]  text-sm placeholder:px-0 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                    <div className="w-[2.5rem]">
+                      <Lottie animationData={search_icon} loop={true} />
+                    </div>
                   </div>
-                </div>
-                </motion.div> 
+                </motion.div>
                 <div className="pt-5 mmobile:pt-4   relative overflow-hidden">
                   <div className=" flex justify-center   relative overflow-hidden pb-[3rem]">
                     <div className="cursor-default absolute  hidden xl:flex 2xl:hidden  z-0 ">
-                      <Lottie animationData={background1} loop={true} className="w-[98rem]" />
+                      <Lottie
+                        animationData={background1}
+                        loop={true}
+                        className="w-[98rem]"
+                      />
                     </div>
                     <div className=" flex flex-wrap justify-center  gap-10 mx-10   z-10  sm:mt-10 md:mt-16 lg:mt-10 ">
-                      {currentPosts 
+                      {currentPosts
                         .filter((sear) => {
-                          return (
-                            search ===""
-                              ? sear
-                              :  sear.Title.includes(search) ||
-                            sear.Body.includes(search) ||
-                            sear.User.includes(search)
-                          );
+                          return search === ""
+                            ? sear
+                            : sear.Title.includes(search) ||
+                                sear.Body.includes(search) ||
+                                sear.User.includes(search);
                         })
                         .map((blog) => (
                           <div className="flex relative   ">
@@ -134,9 +117,7 @@ const Test = () => {
                                   </p>
                                   <p className="text-white text-xs">
                                     {" "}
-                                    {moment(
-                                      blog.createdAt.toDate()
-                                    ).calendar()}
+                                    {moment(blog.createdAt.toDate()).calendar()}
                                   </p>
                                 </div>
                               </div>
@@ -150,14 +131,11 @@ const Test = () => {
                               <p class="cursor-default mb-[2.5rem] font-normal text-gray-400   to-transparent">
                                 {blog.Body.slice(0, 100)}...
                               </p>
-                                     <div className="  cursor-pointer my-3 absolute bottom-[5px] inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-800 rounded-sm hover:bg-emerald-700 ">
-                                    <Link
-                                      className="  "
-                                      to={`/detail/${blog.id}`}
-                                      >
-                                      Read more
-                                    </Link>
-                                     </div>
+                              <div className="  cursor-pointer my-3 absolute bottom-[5px] inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-800 rounded-sm hover:bg-emerald-700 ">
+                                <Link className="  " to={`/detail/${blog.id}`}>
+                                  Read more
+                                </Link>
+                              </div>
                             </div>
                           </div>
                         ))}
@@ -189,7 +167,7 @@ const Test = () => {
                 />
               </p>
             </div>
-            <div className=" mb-10">
+            <div className=" mb-10 mx-auto max-w-[90rem]">
               <div className="flex flex-wrap justify-center gap-5 mx-3  mt-8 cursor-default">
                 <div className="bg-green-800 min-w-[19rem] mmobile:min-w-[20rem] max-w-[36rem] w-full  px-5 text-justify py-5 rounded-md flex items-center shadow-lg">
                   <p className=" font-medium text-base text-white font-mono leading-7 pb-3">

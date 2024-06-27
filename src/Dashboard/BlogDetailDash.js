@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   deleteDoc,
   doc,
@@ -11,21 +11,23 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
-import Login from "./Login";
-import { blogData, getCurrentUser, db, auth } from "./config/firebase";
-import BlogContext from "./contexts/BlogContext";
-import Loading from "./Loading";
+import Login from "../Login/Login";
+import { blogData, getCurrentUser, db, auth } from "../config/firebase";
+import BlogContext from "../contexts/BlogContext";
+import Loading from "../Loading";
 
-import conversation from "./assets/conversation.json";
+import conversation from "../assets/conversation.json";
 
-import conv from "./assets/conv.json";
+// import conv from "./assets/conv.json";
 import Cookies from "universal-cookie";
-import Comment from "./Comment";
+import Comment from "../Comment";
 const cookies = new Cookies();
 
-const TestDetail = () => {
+const BlogDetailDash = () => {
   const currentUser = getCurrentUser();
-  const { id } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const id = location?.state?.blog_id;
   const {
     blgData,
     updateVariableFunc,
@@ -44,14 +46,25 @@ const TestDetail = () => {
   const refToken = cookies.get("auth-token");
 
   // Convert sec to dd-mm-yyyy
-  // const toDate = (sec) => {
-  //   let date = new Date(sec * 1000);
-  //   const monthsName = ["Jan", "Feb", "Mar", "Apr" ,"Jun" ,"Jul", "Aug", "Sept", "Oct" ,"Nov"];
-  //   const day = date.getDate();
-  //   const month = monthsName[date.getMonth()];
-  //   const year = date.getFullYear();
-  //   return `${day}-${month}`;
-  // };
+  const toDate = (sec) => {
+    let date = new Date(sec * 1000);
+    const monthsName = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+    ];
+    const day = date.getDate();
+    const month = monthsName[date.getMonth()];
+    const year = date.getFullYear();
+    return `${day}-${month}`;
+  };
 
   useEffect(() => {
     const queryMessages = query(
@@ -137,7 +150,12 @@ const TestDetail = () => {
       }
     }
   }, [id, blgData]);
-  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/dashboard/edit", {
+      state: { blog_id: id },
+    });
+  };
 
   return (
     <div>
@@ -167,35 +185,67 @@ const TestDetail = () => {
                 {blog !== null && (
                   <div classNameName=" ">
                     <div className="flex items-center justify-center  ">
-                      <div className=" w-[90%] mx-3 mt-5 p-6 rounded-lg  bg-gray-800 shadow-lg hover:shadow-xl  hover:transition-all relative">
-                        {/* <div className="  min-w-[280px] mx-3 lg:w-[600px] mt-4 max-w-[900px] p-6 rounded-lg  bg-gray-800 shadow-md hover:shadow-xl  hover:transition-all relative"> */}
-                        <h5 className="mb-2 text-3xl font-bold tracking-tight text-white">
-                          {blog.Title}
-                        </h5>
-                        <div className="py-2 flex items-center gap-2">
+                      <div className=" w-[90%] mx-2 mt-5 p-4 rounded-lg  bg-gray-800 shadow-lg hover:shadow-xl  hover:transition-all relative">
+                        <h5
+                          className="preview-content mb-2 text-3xl font-bold tracking-tight text-white"
+                          contentEditable="false"
+                          dangerouslySetInnerHTML={{
+                            __html: blog.Title,
+                          }}
+                        />
+
+                        <div className=" flex items-center gap-2  pl-3">
                           {blog.Photo ? (
                             <img
                               src={blog.Photo}
-                              className="rounded-full w-8"
+                              className="rounded-full w-10"
                             />
                           ) : (
-                            // <BiUserCircle style={{ fill: "white" }} />
                             <div className="w-8 h-8 flex justify-center items-center rounded-full bg-white text-black text-lg font-bold">
                               {blog.User[0].toUpperCase()}
                             </div>
                           )}
-                          <p className="text-gray-400">{blog.User}</p>
+                          <p className="text-gray-400 text-lg">{blog.User}</p>
                         </div>
-                        <p className="mb-3  text-white text-lg font-medium">
-                          {blog.Body}
-                        </p>
+                        <p
+                          className="blgDetial preview-content mb-3   text-lg font-medium "
+                          contentEditable="false"
+                          dangerouslySetInnerHTML={{
+                            __html: blog.Body,
+                          }}
+                        />
+                        {/* {blog.Body} */}
                         {blog.userId === currentUser.uid && (
-                          <button
-                            onClick={() => handleDelete(blog.id)}
-                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-800 rounded-sm hover:bg-emerald-700 "
-                          >
-                            Delete
-                          </button>
+                          <div className="flex gap-5 align-middle">
+                            <button
+                              onClick={() => handleDelete(blog.id)}
+                              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-800 rounded-sm hover:bg-emerald-700 "
+                            >
+                              Delete
+                            </button>
+                            <button
+                              onClick={handleNavigation}
+                              className="inline-flex gap-1 items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-800 rounded-sm hover:bg-emerald-700 "
+                            >
+                              <>Edit </>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="15"
+                                height="15"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-file-pen-line"
+                              >
+                                <path d="m18 5-2.414-2.414A2 2 0 0 0 14.172 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2" />
+                                <path d="M21.378 12.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
+                                <path d="M8 18h1" />
+                              </svg>
+                            </button>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -221,4 +271,4 @@ const TestDetail = () => {
   );
 };
 
-export default TestDetail;
+export default BlogDetailDash;

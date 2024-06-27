@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import {  getFirestore } from "firebase/firestore";
-
+import { getFirestore } from "firebase/firestore";
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDNeoQFETmNRb2c7Xv1y0i01i2KYfJXVi4",
@@ -37,7 +36,7 @@ const firebaseConfig = {
   storageBucket: `${process.env.REACT_APP_FIREBASE_STORAGE_BUCKET}`,
   messagingSenderId: `${process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID}`,
   appId: `${process.env.REACT_APP_FIREBASE_APP_ID}`,
-  measurementId: `${process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}`
+  measurementId: `${process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}`,
 };
 
 const Register = initializeApp(firebaseConfig);
@@ -45,10 +44,12 @@ const Register = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const googleProvider = new GoogleAuthProvider();
 export const blogData = getFirestore();
+export const signInWithGoogleUser = getFirestore();
 export const userData = getFirestore(Register);
 export const db = getFirestore();
 
 export const getCurrentUser = () => {
   const currentUser = auth.currentUser;
+  // console.log(currentUser, "curruser");
   return currentUser;
 };

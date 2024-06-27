@@ -11,7 +11,41 @@
   margin: 0;
   font-family: "Quicksand", "Roboto Slab", "Roboto Mono", "Merriweather",
     "Quicksand";
-  color: #333;
+  /* color: #333; */
+}
+pre.ql-syntax {
+  background-color: #23241f;
+  color: #f8f8f2;
+  /* overflow: visible; */
+  /* padding: 5px; */
+  font-size: 0.85em;
+  border-radius: 3px;
+  padding: 10px 20px;
+}
+
+.shape {
+  width: 50px;
+  height: 50px;
+  opacity: 0.7;
+  animation: moveUp 8s linear infinite;
+  /* z-index: 0; */
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #e2e8f0;
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(50vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+  }
 }
 
 .navbar {

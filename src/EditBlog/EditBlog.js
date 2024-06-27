@@ -3,18 +3,18 @@ import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
-import { blogData, auth, getCurrentUser, userData } from "./config/firebase";
+import { blogData, auth, getCurrentUser, userData } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import BlogContext from "./contexts/BlogContext";
 import Lottie from "lottie-react";
-import blog from "./assets/blog.json";
-import Loading from "./Loading";
+import blog from "../assets/blog.json";
+import Loading from "../Loading";
 import { Typewriter } from "react-simple-typewriter";
 import Cookies from "universal-cookie";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import Logo from "./assets/logo_transparent.png";
+import Logo from "../assets/logo_transparent.png";
 import { Link } from "react-router-dom";
-import Login from "./Login/Login";
+import Login from "../Login/Login";
 import { set } from "firebase/database";
 const cookies = new Cookies();
 // import "react-quill/dist/quill.snow.css";
@@ -42,7 +42,7 @@ const toolbarOptions = [
   ["clean"],
 ];
 
-const Addtest = () => {
+const EditBlog = () => {
   const history = useNavigate();
   const { isLoading } = useContext(BlogContext);
   const [user, setUser] = useState(null);
@@ -331,4 +331,4 @@ const Addtest = () => {
   );
 };
 
-export default Addtest;
+export default EditBlog;

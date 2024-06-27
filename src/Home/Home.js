@@ -1,20 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import BlogContext from "./contexts/BlogContext";
+import BlogContext from "../contexts/BlogContext";
 import Lottie from "lottie-react";
-import Loading from "./Loading";
+import Loading from "../Loading";
 import { BiSolidQuoteRight } from "react-icons/bi";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import header1 from "./assets/header1";
-import background1 from "./assets/background1.json";
-import hero from "./assets/hero.json";
+import header1 from "../assets/header1";
+import background1 from "../assets/background1.json";
+import hero from "../assets/hero.json";
 import { Typewriter } from "react-simple-typewriter";
-import Pagination from "./Pagination";
-import Logo from "./assets/logo_transparent_dark.png";
-import BackToTop from "./BackToTop";
+import Pagination from "../Pagination";
+import Logo from "../assets/logo_transparent_dark.png";
+import BackToTop from "../BackToTop";
 import moment from "moment";
-import search_icon from "./assets/search.json";
+import search_icon from "../assets/search.json";
 import { motion } from "framer-motion";
+// import MovingShapes from "./MovingShapes";
 
 const Test = () => {
   const {
@@ -36,7 +37,7 @@ const Test = () => {
   return (
     <div className="">
       {!isLoading && (
-        <div className=" ">
+        <div>
           <div className="mx-auto max-w-[90rem]">
             <div className="">
               <div>
@@ -44,21 +45,21 @@ const Test = () => {
                   <div className="  pl-2 mmobile:pl-4 lmobile:pl-3 ">
                     <div
                       className=" cursor-default top-[-0.5rem] smobile:top-[-1.5rem] mmobile:top-[-1rem] h-[28%] smobile:h-[33%] mmobile:h-[35%] lmobile:h-[37%] sm:h-[70%] md:h-[90%] lg:h-[78%]    sm:top-[1rem] md:top-[1rem] lg:top-[3rem] w-[5.5rem] 
-                    smobile:w-[5.5rem] mmobile:w-[7rem] sm:w-[7rem] md:w-[8.5rem] lg:w-[11.5rem] lmobile:block hidden  absolute"
+                    smobile:w-[5.5rem] mmobile:w-[7rem] sm:w-[7rem] md:w-[8.5rem] lg:w-[11.5rem] lmobile:block hidden z-10   absolute"
                     >
                       <Lottie animationData={hero} loop={true} />
                     </div>
-                    <h1 className=" cursor-default mt-5 lmobile:mt-10  lmobile:my-5 md:my-8  font-bold  text-black text-2xl mmobile:text-3xl md:text-4xl lg:text-5xl font-[Merriweather]">
+                    <h1 className=" cursor-default mt-5 lmobile:mt-10   lmobile:my-5 md:my-8  font-bold  text-black text-2xl mmobile:text-3xl md:text-4xl lg:text-5xl font-[Merriweather] relative z-20 ">
                       Express Yourself
                     </h1>
-                    <p className="cursor-default lmobile:w-[100%] md:w-[80%] lg:w-[90%]  smobile:mt-3 lmobile:font-medium  sm:font-semibold lmobile:text-sm sm:text-base lg:text-xl">
+                    <p className="cursor-default lmobile:w-[100%] md:w-[80%] lg:w-[90%]  smobile:mt-3 lmobile:font-medium  sm:font-semibold lmobile:text-sm sm:text-base lg:text-xl relative z-20">
                       Your Voice, Your Blog. Start writing and sharing your
                       unique stories with the world. It's simple, it's easy—get
                       started now!
                     </p>
                   </div>
                   <div className=" mmobile:pt-3">
-                    <div className="cursor-default smobile:mt-2 w-[13rem] smobile:w-[18rem] mmobile:w-[20rem] lmobile:w-[16rem] md:w-[18rem] lg:w-[25rem] ">
+                    <div className="cursor-default smobile:mt-2 w-[13rem] smobile:w-[18rem] mmobile:w-[20rem] lmobile:w-[16rem] md:w-[18rem] lg:w-[25rem] z-20 relative ">
                       <Lottie animationData={header1} loop={true} />
                     </div>
                   </div>
@@ -80,7 +81,7 @@ const Test = () => {
                   </div>
                 </motion.div>
                 <div className="pt-5 mmobile:pt-4   relative overflow-hidden">
-                  <div className=" flex justify-center   relative overflow-hidden pb-[3rem]">
+                  <div className=" flex justify-center   relative overflow-hidden pb-[3rem] z-20">
                     <div className="cursor-default absolute  hidden xl:flex 2xl:hidden  z-0 ">
                       <Lottie
                         animationData={background1}
@@ -121,16 +122,30 @@ const Test = () => {
                                   </p>
                                 </div>
                               </div>
-                              <h5 class="cursor-default mb-2 text-2xl font-bold tracking-tight text-white ">
-                                {blog.Title}
-                              </h5>
+                              <h5
+                                class="cursor-default mb-2 text-2xl font-bold tracking-tight text-white 
+                            
+                              "
+                                contentEditable
+                                dangerouslySetInnerHTML={{
+                                  __html: blog.Title,
+                                }}
+                              />
+                              {/* {} */}
+                              {/* </h5> */}
                               {/* <p className="text-white text-xs py-1 ">Posted on: {toDate(blog.createdAt)}</p> */}
                               {/* <p className="text-white text-xs py-1 ">Posted on: {blog.createdAt.toDate().toDateString()}</p> */}
                               {/* <p className="text-white text-xs py-1 flex">Posted on: <p className="text-white bg-red-700">{moment(blog.createdAt.toDate()).add('days').calendar()}</p> </p> */}
 
-                              <p class="cursor-default mb-[2.5rem] font-normal text-gray-400   to-transparent">
-                                {blog.Body.slice(0, 100)}...
-                              </p>
+                              <p
+                                class="cursor-default mb-[2.5rem] font-normal text-gray-400   to-transparent"
+                                contentEditable
+                                dangerouslySetInnerHTML={{
+                                  __html: blog.Body.slice(0, 100) + "......",
+                                }}
+                              />
+                              {/* {blog.Body.slice(0, 100)}... */}
+                              {/* </p> */}
                               <div className="  cursor-pointer my-3 absolute bottom-[5px] inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-800 rounded-sm hover:bg-emerald-700 ">
                                 <Link className="  " to={`/detail/${blog.id}`}>
                                   Read more
@@ -260,6 +275,7 @@ const Test = () => {
               </div>
             </footer>
           </div>
+          {/* <MovingShapes /> */}
           <BackToTop />
         </div>
       )}

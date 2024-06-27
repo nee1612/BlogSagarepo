@@ -2,31 +2,25 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogContextProvider from "./contexts/BlogContextProvider";
 import Navbar from "./navbar";
-import Home from "./Home";
-import BlogDetails from "./BlogDetails";
+import Home from "./Home/Home.js";
+import BlogDetails from "./BlogDetails/BlogDetails.js";
 import NotFound from "./NotFound";
-import Login from "./Login";
-import Register from "./Register";
-import Addtest from "./Addtest.js";
+import Login from "./Login/Login.js";
+import Register from "./Register/Register.js";
+import Addtest from "./Addtest";
 import ForgetPassword from "./ForgetPassword";
 import Cookies from "universal-cookie";
 import Sidebar from "./Sidebar";
 import Backdrop from "./Backdrop";
-import About from "./About";
 import TextEditor from "./TextEditor.js";
+import Dashboard from "./Dashboard/Dashboard.js";
+import MovingShapes from "./MovingShapes.js";
+import About from "./About/About.js";
+import BlogDetailDash from "./Dashboard/BlogDetailDash.js";
+import EditBlog from "./Dashboard/EditBlog.js";
+// import MovingShapes from "./MovingShapes.js";
 
 function App() {
-  // const [userName, setUserName] = useState("");
-
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     console.log(user);
-  //     if (user) {
-  //       setUserName(user.displayName);
-  //     } else setUserName("");
-  //     console.log(user);
-  //   });
-  // }, []);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -38,9 +32,10 @@ function App() {
           <Navbar click={toggle} />
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
           <Backdrop click={toggle} isOpen={isOpen} />
-          <div className="content">
+
+          {/* <MovingShapes /> */}
+          <div className="content  ">
             <Routes>
-              {/* <Route exact path="/" element={<Home name={userName} />} /> */}
               <Route exact path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
@@ -49,6 +44,10 @@ function App() {
               <Route path="/reset" element={<ForgetPassword />} />
               <Route path="/about" element={<About />} />
               <Route path="/edittext" element={<TextEditor />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/detail" element={<BlogDetailDash />} />
+              <Route path="/dashboard/edit" element={<EditBlog />} />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

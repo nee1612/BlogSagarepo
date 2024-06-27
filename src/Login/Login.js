@@ -1,26 +1,32 @@
-import { auth, googleProvider } from "./config/firebase";
+import { auth, googleProvider, signInWithGoogleUser } from "../config/firebase";
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 import React, { useContext, useEffect } from "react";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import Logo from "./assets/logo_transparent.png";
+import Logo from "../assets/logo_transparent.png";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Lottie from "lottie-react";
-import Loading from "./Loading";
-import loginLottie from "./assets/Login.json";
-import loginBg from "./assets/login bg.json";
-import googleLog from "./assets/google.json";
+import Loading from "../Loading";
+import loginLottie from "../assets/Login.json";
+// import loginBg from "./assets/login bg.json";
+import googleLog from "../assets/google.json";
 import { Link } from "react-router-dom";
-import BlogContext from "./contexts/BlogContext";
+import BlogContext from "../contexts/BlogContext";
 import Cookies from "universal-cookie";
+import { displayName } from "react-quill";
 const cookies = new Cookies();
 
 const Login = () => {
   const history = useNavigate();
+  const googleUserRef = collection(
+    signInWithGoogleUser,
+    "signInWithGoogleUser"
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isValid, setIsValid] = useState("");
@@ -37,9 +43,22 @@ const Login = () => {
       setIsValid("*Invalid Account");
     }
   };
+
   const SignInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+
+      // try {
+      //   await addDoc(googleUserRef, {
+      //     email: result.user.email,
+      //     displayName: result.user.displayName,
+      //     photoURL: result.user.photoURL,
+      //     uid: result.user.uid,
+      //   });
+      // } catch (err) {
+      //   console.error(err);
+      // }
+
       cookies.set("auth-token", result.user.refreshToken);
       history("/");
     } catch (err) {
@@ -64,7 +83,7 @@ const Login = () => {
     <div>
       {!isLoading && (
         <div>
-          <section className=" mt-16 smobile:mt-10 mmobile:mt-7">
+          <section className=" mt-16 smobile:mt-10 mmobile:mt-7 ">
             <div className="grid  lg:grid-cols-2">
               <div className=" w-[100%] ">
                 <div>

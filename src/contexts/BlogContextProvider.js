@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BlogContext from "./BlogContext";
 import { blogData, getCurrentUser, auth } from "../config/firebase";
-import {
-  getDocs,
-  collection,
-  query,
-  orderBy
-} from "firebase/firestore";
+import { getDocs, collection, query, orderBy } from "firebase/firestore";
 import { useNavigate } from "react-router";
 const BlogContextProvider = ({ children }) => {
   const [updateVariable, setUpdateVariable] = useState(true);
@@ -27,10 +22,12 @@ const BlogContextProvider = ({ children }) => {
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = blgData.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const [test,setTest]=useState('');
+  const [test, setTest] = useState("");
+  const [userData, setUserData] = useState({});
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        setUserData(user);
         setUserName(user.displayName);
       } else setUserName("noUser");
       console.log("username", userName);
@@ -48,15 +45,10 @@ const BlogContextProvider = ({ children }) => {
       }));
       setBlgData(filteredBlog);
       setIsLoading(false);
-      console.log("current",currentPosts);
-      // currentPosts();
     } catch (err) {
       console.error(err);
     }
   };
-
-  
-
 
   // redirect to login page
   const pleaseLogin = () => {
@@ -91,7 +83,10 @@ const BlogContextProvider = ({ children }) => {
         totalPost,
         paginate,
         currentPage,
-        setCurrentPage,test,setTest
+        setCurrentPage,
+        test,
+        setTest,
+        userData,
       }}
     >
       {children}

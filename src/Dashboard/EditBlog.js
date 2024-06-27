@@ -2,30 +2,28 @@ import React, { useContext, useRef } from "react";
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
-import { blogData, auth, getCurrentUser, userData } from "./config/firebase";
-import { useNavigate } from "react-router-dom";
-import BlogContext from "./contexts/BlogContext";
+import {
+  addDoc,
+  collection,
+  doc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { blogData, auth, getCurrentUser, userData } from "../config/firebase";
+import { useLocation, useNavigate } from "react-router-dom";
+import BlogContext from "../contexts/BlogContext";
 import Lottie from "lottie-react";
-import blog from "./assets/blog.json";
-import Loading from "./Loading";
+import blog from "../assets/blog.json";
+import Loading from "../Loading";
 import { Typewriter } from "react-simple-typewriter";
 import Cookies from "universal-cookie";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import Logo from "./assets/logo_transparent.png";
+import Logo from "../assets/logo_transparent.png";
 import { Link } from "react-router-dom";
-import Login from "./Login/Login";
+import Login from "../Login/Login";
 import { set } from "firebase/database";
 const cookies = new Cookies();
-// import "react-quill/dist/quill.snow.css";
-// const Font = Quill.import("formats/font");
-// Font.whitelist = [
-//   "Montserrat",
-//   "Rollgates",
-//   "RollgatesItalic",
-//   "RollgatesBold",
-// ];
-// Quill.register(Font, true);
+
 const toolbarOptions = [
   [{ font: [] }],
   [{ size: ["small", false, "large", "huge"] }],
@@ -42,11 +40,16 @@ const toolbarOptions = [
   ["clean"],
 ];
 
-const Addtest = () => {
+const EditBlog = () => {
   const history = useNavigate();
+  const location = useLocation();
+  const id = location?.state?.blog_id;
+  console.log(id, "editBlog");
   const { isLoading } = useContext(BlogContext);
+  console.log(isLoading, "isLoading");
   const [user, setUser] = useState(null);
   const [dataUser, setDataUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userBlog, setUserBlog] = useState({
     title: "",
@@ -56,7 +59,7 @@ const Addtest = () => {
   const blogRef = collection(blogData, "BlogData");
   const authRef = collection(userData, "userCred");
   const refToken = cookies.get("auth-token");
-  const { updateVariableFunc, pleaseLogin } = useContext(BlogContext);
+  const { updateVariableFunc, pleaseLogin, blgData } = useContext(BlogContext);
   const currentUser = getCurrentUser();
   const [authState, setAuthState] = useState(cookies.get("auth-token"));
   const [isValid, setIsValid] = useState("");
@@ -68,6 +71,28 @@ const Addtest = () => {
       setUser(currentUser);
     }
   }, []);
+  const [docId, setDocId] = useState(id);
+  const filteredDataById = (id) => {
+    let tempData;
+    tempData = blgData.filter((item) => {
+      return item.id === id;
+    });
+    return tempData[0];
+  };
+  const fetchData = async () => {
+    setLoading(true);
+    if (id) {
+      const data = filteredDataById(id);
+      setUserBlog({
+        title: data.Title,
+        body: data.Body,
+      });
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, [id]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -77,14 +102,18 @@ const Addtest = () => {
     } else {
       setIsValid("");
       try {
-        await addDoc(blogRef, {
+        // const updateDocRef = doc(blogData, docId);
+        const newDocId = docId;
+        const updateBlogRef = doc(blogRef, newDocId);
+        await updateDoc(updateBlogRef, {
           Body: userBlog.body,
           Title: userBlog.title,
           User: user.displayName,
           Photo: user.photoURL,
           userId: auth.currentUser.uid,
-          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
         });
+
         setUserBlog({
           title: "",
           body: "",
@@ -156,7 +185,7 @@ const Addtest = () => {
   }, []);
   return (
     <div>
-      {!isLoading && (
+      {!loading ? (
         <div>
           {refToken && (
             <div className="">
@@ -192,12 +221,12 @@ const Addtest = () => {
                   <form onSubmit={handleFormSubmit}>
                     <div className=" relative">
                       {/* Title Section */}
-                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-0 sm:px-0">
-                        <p className="text-lg font-semibold  text-gray-900 pb-4">
+                      <div className="px-4 py-6 sm:flex   sm:px-0">
+                        <p className="text-lg  w-[25%] font-semibold  text-gray-900 pb-4">
                           Title:
                         </p>
                         <div
-                          className="preview-content  flex h-10 w-[100%]  sm:w-[50vw] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                          className=" preview-content   w-[100%]  sm:w-[60vw] overflow-hidden  rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="text"
                           placeholder="Title"
                           contentEditable="false"
@@ -210,12 +239,13 @@ const Addtest = () => {
                         />
                       </div>
                       {/* Body Section */}
-                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-0 sm:px-0">
-                        <p className="text-lg font-semibold  leading-6 text-gray-900 pb-4">
+                      <div className="px-4 py-6 sm:flex   sm:px-0">
+                        <p className="text-lg w-[25%] font-semibold  leading-6 text-gray-900 pb-4">
                           Body:
                         </p>
                         <div
-                          className=" preview-content  h-10 w-[100%]  sm:w-[50vw] overflow-hidden  rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                          className=" preview-content max-h-[60rem] w-[100%]  sm:w-[60vw] overflow-hidden 
+                          overflow-y-auto rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="text"
                           contentEditable="false"
                           dangerouslySetInnerHTML={{
@@ -325,10 +355,12 @@ const Addtest = () => {
           )}
           {!refToken && <Login />}
         </div>
+      ) : (
+        <Loading />
       )}
-      {isLoading && <Loading />}
+      {/* {isLoading && } */}
     </div>
   );
 };
 
-export default Addtest;
+export default EditBlog;

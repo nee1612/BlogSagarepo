@@ -18,7 +18,8 @@ import MovingShapes from "./MovingShapes.js";
 import About from "./About/About.js";
 import BlogDetailDash from "./Dashboard/BlogDetailDash.js";
 import EditBlog from "./Dashboard/EditBlog.js";
-// import MovingShapes from "./MovingShapes.js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +29,7 @@ function App() {
   return (
     <BrowserRouter>
       <BlogContextProvider>
+        <ToastContainer />
         <div className="App ">
           <Navbar click={toggle} />
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -47,7 +49,6 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard/detail" element={<BlogDetailDash />} />
               <Route path="/dashboard/edit" element={<EditBlog />} />
-
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { BiHome } from "react-icons/bi";
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDNeoQFETmNRb2c7Xv1y0i01i2KYfJXVi4",
@@ -45,6 +46,7 @@ export const auth = getAuth();
 export const googleProvider = new GoogleAuthProvider();
 export const blogData = getFirestore();
 export const signInWithGoogleUser = getFirestore();
+export const blogSuggestion = getFirestore();
 export const userData = getFirestore(Register);
 export const db = getFirestore();
 

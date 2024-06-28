@@ -1,0 +1,16 @@
+.custom-toast-success {
+  /* background-color: #2e4f4f !important; */
+  background-color: #232d3f !important;
+  color: white !important;
+  /* margin-top: 1rem; */
+}
+
+.custom-toast-error {
+  background-color: #f44336 !important; /* Red */
+  color: white !important;
+}
+
+/* Close button styles */
+.Toastify__close-button {
+  color: white !important;
+}

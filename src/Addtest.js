@@ -15,17 +15,8 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import Logo from "./assets/logo_transparent.png";
 import { Link } from "react-router-dom";
 import Login from "./Login/Login";
-import { set } from "firebase/database";
 const cookies = new Cookies();
-// import "react-quill/dist/quill.snow.css";
-// const Font = Quill.import("formats/font");
-// Font.whitelist = [
-//   "Montserrat",
-//   "Rollgates",
-//   "RollgatesItalic",
-//   "RollgatesBold",
-// ];
-// Quill.register(Font, true);
+
 const toolbarOptions = [
   [{ font: [] }],
   [{ size: ["small", false, "large", "huge"] }],
@@ -192,12 +183,12 @@ const Addtest = () => {
                   <form onSubmit={handleFormSubmit}>
                     <div className=" relative">
                       {/* Title Section */}
-                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-0 sm:px-0">
-                        <p className="text-lg font-semibold  text-gray-900 pb-4">
+                      <div className="px-4 py-6 sm:flex   sm:px-0">
+                        <p className="text-lg  w-[25%] font-semibold  text-gray-900 pb-4">
                           Title:
                         </p>
                         <div
-                          className="preview-content  flex h-10 w-[100%]  sm:w-[50vw] rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                          className=" preview-content   w-[100%]  sm:w-[60vw] overflow-hidden  rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="text"
                           placeholder="Title"
                           contentEditable="false"
@@ -210,12 +201,13 @@ const Addtest = () => {
                         />
                       </div>
                       {/* Body Section */}
-                      <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-0 sm:px-0">
-                        <p className="text-lg font-semibold  leading-6 text-gray-900 pb-4">
+                      <div className="px-4 py-6 sm:flex   sm:px-0">
+                        <p className="text-lg w-[25%] font-semibold  leading-6 text-gray-900 pb-4">
                           Body:
                         </p>
                         <div
-                          className=" preview-content  h-10 w-[100%]  sm:w-[50vw] overflow-hidden  rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                          className=" preview-content max-h-[60rem] w-[100%]  sm:w-[60vw] overflow-hidden 
+                          overflow-y-auto rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="text"
                           contentEditable="false"
                           dangerouslySetInnerHTML={{

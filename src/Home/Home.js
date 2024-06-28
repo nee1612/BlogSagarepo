@@ -15,24 +15,83 @@ import BackToTop from "../BackToTop";
 import moment from "moment";
 import search_icon from "../assets/search.json";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import "./customToast.css";
+import { blogSuggestion, blogData } from "../config/firebase";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getDoc,
+  query,
+  orderBy,
+  serverTimestamp,
+} from "firebase/firestore";
+import Cookies from "universal-cookie";
+import SuggestionList from "../SuggestionPanel/SuggestionList";
+const cookies = new Cookies();
 // import MovingShapes from "./MovingShapes";
 
 const Test = () => {
-  const {
-    blgData,
-    currentPosts,
-    isLoading,
-    updateVariableFunc,
-    test,
-    setTest,
-  } = useContext(BlogContext);
+  const { currentPosts, isLoading, updateVariableFunc, setTest } =
+    useContext(BlogContext);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     updateVariableFunc();
     setTest("start");
-    console.log("test123", test);
   }, []);
+  const suggestionRef = collection(blogSuggestion, "blogSuggestion");
+  const [authState, setAuthState] = useState(cookies.get("auth-token"));
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !email) {
+      toast.error("Please fill all the fields", {
+        position: "top-center",
+        className: "custom-toast-success",
+        bodyClassName: "customToast",
+      });
+      return;
+    }
+    try {
+      const firstLetterOfEmail = email.charAt(0).toUpperCase();
+      addDoc(suggestionRef, {
+        Name: name,
+        Email: email,
+        photoURL: firstLetterOfEmail,
+        createdAt: serverTimestamp(),
+      });
+      setname("");
+      setemail("");
+    } catch (err) {
+      console.log(err);
+    }
+    toast.success("Your idea means a lot to us!", {
+      position: "top-center",
+      className: "custom-toast-success",
+      bodyClassName: "customToast",
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const fetchSuggestions = async () => {
+    setShowSuggestions(!showSuggestions);
+    try {
+      const q = query(suggestionRef);
+      const suggestions = await getDocs(q);
+      const filteredSuggestions = suggestions.docs.map((suggestion) => ({
+        ...suggestion.data(),
+        id: suggestion.id,
+      }));
+      setSuggestions(filteredSuggestions);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="">
@@ -234,30 +293,50 @@ const Test = () => {
               <div class="mx-auto flex max-w-6xl flex-col items-start space-x-8 md:flex-row">
                 <div class="w-full px-4 md:w-1/2 lg:px-0">
                   <h1 class="max-w-sm text-3xl font-bold cursor-default">
-                    Subscribe to our Blog Post
+                    Have a Blog Idea? Share It!
                   </h1>
                   <form
                     action=""
-                    class="mt-4 inline-flex w-full items-center md:w-3/4"
+                    class="mt-4  w-full items-center md:w-3/4"
+                    onSubmit={handleFormSubmit}
                   >
-                    <input
-                      class="flex h-10 w-full rounded-md border border-black/20 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="email"
-                      placeholder="Email"
-                    />
-                    <button
-                      type="submit"
-                      class="ml-4 rounded-full   text-sm  shadow-sm  "
-                    >
-                      <BsFillArrowRightCircleFill size={35} />
-                    </button>
+                    <div class="inline-flex w-[calc(100%-50px)] mb-3">
+                      <input
+                        class="flex h-10 w-full rounded-md border border-black/20 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        type="name"
+                        placeholder="Blog Idea "
+                        id="name"
+                        value={name}
+                        onChange={(e) => setname(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="inline-flex w-full">
+                      <input
+                        class="flex h-10 w-full rounded-md border border-black/20 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        type="email"
+                        placeholder="Email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setemail(e.target.value)}
+                      />
+                      <button
+                        type="submit"
+                        class="ml-4 rounded-full   text-sm  shadow-sm  "
+                      >
+                        <BsFillArrowRightCircleFill size={35} />
+                      </button>
+                    </div>
                   </form>
                   <div class="my-4 ml-2 lg:mb-0">
-                    <Link to="/about">
-                      <p className="font-bold   space-y-4 text-[14px]  text-gray-500 cursor-pointer">
-                        About us
-                      </p>
-                    </Link>
+                    <p
+                      className="font-bold   space-y-4 text-[14px]  text-gray-500 cursor-pointer"
+                      onClick={() => {
+                        fetchSuggestions();
+                      }}
+                    >
+                      See Contributions ! !
+                    </p>
                   </div>
                 </div>
                 <div class="mt-8 grid grid-cols-2 gap-6 md:mt-0 lg:w-3/4 lg:grid-cols-3 "></div>
@@ -276,6 +355,7 @@ const Test = () => {
             </footer>
           </div>
           {/* <MovingShapes /> */}
+          {showSuggestions ? <SuggestionList suggestions={suggestions} /> : ""}
           <BackToTop />
         </div>
       )}

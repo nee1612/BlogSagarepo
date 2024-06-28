@@ -15,10 +15,6 @@ import Login from "../Login/Login";
 import { blogData, getCurrentUser, db, auth } from "../config/firebase";
 import BlogContext from "../contexts/BlogContext";
 import Loading from "../Loading";
-
-import conversation from "../assets/conversation.json";
-
-// import conv from "./assets/conv.json";
 import Cookies from "universal-cookie";
 import Comment from "../Comment";
 const cookies = new Cookies();
@@ -26,14 +22,8 @@ const cookies = new Cookies();
 const TestDetail = () => {
   const currentUser = getCurrentUser();
   const { id } = useParams();
-  const {
-    blgData,
-    updateVariableFunc,
-    pleaseLogin,
-    user,
-    isLoading,
-    userName,
-  } = useContext(BlogContext);
+  const { blgData, updateVariableFunc, pleaseLogin, isLoading } =
+    useContext(BlogContext);
   const [blog, setBlog] = useState(null);
   const [deleting, setIsDeleting] = useState(false);
   const history = useNavigate();
@@ -117,15 +107,6 @@ const TestDetail = () => {
       console.error(err);
     }
     setIsDeleting(false);
-  };
-  // lottie
-  const message = {
-    loop: true,
-    autoplay: true,
-    animationData: conversation,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
   };
 
   useEffect(() => {

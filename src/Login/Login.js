@@ -36,6 +36,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log("result", result);
       cookies.set("auth-token", result.user.refreshToken);
       history("/");
     } catch (err) {

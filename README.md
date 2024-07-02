@@ -1,4 +1,4 @@
-#BlogSage
+BlogSage
 
 BlogSage is a dynamic blogging platform that allows users to post, read, and comment on blogs. Built with modern web technologies, BlogSage ensures a seamless and interactive user experience.
 

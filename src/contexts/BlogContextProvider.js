@@ -36,9 +36,9 @@ const BlogContextProvider = ({ children }) => {
 
   //   Get blog data from Firestore database
   const blogLi = async () => {
+    // setIsLoading(true);
     try {
       const blogs = await getDocs(query(blogRef, orderBy("createdAt", "desc")));
-      // const blogs = await getDocs(blogRef);
       const filteredBlog = blogs.docs.map((blog) => ({
         ...blog.data(),
         id: blog.id,

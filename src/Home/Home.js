@@ -29,6 +29,7 @@ import {
 } from "firebase/firestore";
 import Cookies from "universal-cookie";
 import SuggestionList from "../SuggestionPanel/SuggestionList";
+import BackgroundAnimation from "../BackgroundAnimation";
 const cookies = new Cookies();
 // import MovingShapes from "./MovingShapes";
 
@@ -80,6 +81,7 @@ const Test = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const fetchSuggestions = async () => {
     setShowSuggestions(!showSuggestions);
+
     try {
       const q = query(suggestionRef);
       const suggestions = await getDocs(q);
@@ -95,7 +97,9 @@ const Test = () => {
 
   return (
     <div className="">
-      {!isLoading && (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <div>
           <div className="mx-auto max-w-[90rem]">
             <div className="">
@@ -355,11 +359,22 @@ const Test = () => {
             </footer>
           </div>
           {/* <MovingShapes /> */}
-          {showSuggestions ? <SuggestionList suggestions={suggestions} /> : ""}
           <BackToTop />
+          <BackgroundAnimation />
         </div>
       )}
-      {isLoading && <Loading />}
+      {/* {isLoading && } */}
+      {showSuggestions ? (
+        <div className="absolute">
+          <SuggestionList
+            suggestions={suggestions}
+            setShowSuggestions={setShowSuggestions}
+            showSuggestions={showSuggestions}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

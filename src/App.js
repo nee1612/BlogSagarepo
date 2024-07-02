@@ -32,6 +32,7 @@ function App() {
         <ToastContainer />
         <div className="App ">
           <Navbar click={toggle} />
+          {/* <BackgroundAnimation /> */}
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
           <Backdrop click={toggle} isOpen={isOpen} />
 

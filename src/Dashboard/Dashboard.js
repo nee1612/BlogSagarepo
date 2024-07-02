@@ -31,7 +31,7 @@ function Dashboard() {
         <Loader />
       ) : (
         <div>
-          <section className="flex items-center justify-start  gap-5 mx-14 pt-7 ">
+          <section className="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap  gap-5 mx-14 pt-7 ">
             <div>
               <img
                 src={userData.photoURL}
@@ -42,20 +42,20 @@ function Dashboard() {
               />
             </div>
             <div>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1 sm:flex-nowrap flex-wrap">
                 <p>Name:</p>
                 <p>{userData.displayName}</p>
                 {/* {userData.displayName} */}
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1 sm:flex-nowrap flex-wrap">
                 <p>Email Id:</p>
                 {userData.email}
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1 sm:flex-nowrap flex-wrap">
                 <p>Created At:</p>
                 {moment(userData.metadata?.creationTime).format("LL")}
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1 sm:flex-nowrap flex-wrap">
                 <p>Total Blogs:</p>
                 {blogLength}
               </span>
@@ -63,7 +63,9 @@ function Dashboard() {
           </section>
           {/* My blogs */}
           <section className="my-10">
-            <p className="mx-14 text-2xl font-semibold mb-5 ">My Blogs</p>
+            <p className="ml-8 sm:ml-14 text-2xl font-semibold mb-5 ">
+              My Blogs
+            </p>
             <div className=" flex flex-wrap justify-center  gap-10 mx-10   z-10  ">
               {userBlogs.map((blog) => (
                 <div className="flex relative   ">

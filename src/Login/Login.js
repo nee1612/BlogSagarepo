@@ -48,7 +48,7 @@ const Login = () => {
   const SignInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-
+      console.log("result", result);
       // try {
       //   await addDoc(googleUserRef, {
       //     email: result.user.email,

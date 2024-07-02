@@ -1,0 +1,96 @@
+.posCenter {
+  bottom: calc(100% - 32rem);
+}
+@media screen and (max-width: 1170px) {
+  .posCenter {
+    right: 30%;
+  }
+}
+@media screen and (max-width: 841px) {
+  .posCenter {
+    right: 25%;
+  }
+}
+@media screen and (max-width: 656px) {
+  .posCenter {
+    right: 22%;
+  }
+}
+@media screen and (max-width: 568px) {
+  .posCenter {
+    right: 19%;
+  }
+}
+@media screen and (max-width: 510px) {
+  .posCenter {
+    right: 16%;
+  }
+}
+@media screen and (max-width: 463px) {
+  .posCenter {
+    right: 12%;
+  }
+}
+@media screen and (max-width: 441px) {
+  .posCenter {
+    right: 9%;
+    bottom: calc(100% - 36rem);
+  }
+}
+@media screen and (max-width: 410px) {
+  .posCenter {
+    right: 6%;
+  }
+}
+@media screen and (max-width: 370px) {
+  .main-div {
+    width: 21rem;
+  }
+}
+@media screen and (max-width: 390px) {
+  .posCenter {
+    right: 5%;
+  }
+}
+@media screen and (max-width: 380px) {
+  .posCenter {
+    right: 4%;
+  }
+}
+@media screen and (max-width: 370px) {
+  .posCenter {
+    right: 3%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .posCenter {
+    right: 6%;
+  }
+  .listDiv {
+    width: 17rem;
+  }
+  .main-div {
+    width: 19rem;
+  }
+}
+@media screen and (max-width: 340px) {
+  .posCenter {
+    right: 2%;
+  }
+  .listDiv {
+    width: 17rem;
+  }
+  .main-div {
+    width: 19rem;
+  }
+}
+/* @media screen and (max-width: 463px) {
+  .posCenter {
+    right: 12%;
+  }
+}
+@media screen and (max-width: 463px) {
+  .posCenter {
+    right: 12%;
+  }
+} */

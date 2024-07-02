@@ -13,7 +13,7 @@ BlogSage is a dynamic blogging platform that allows users to post, read, and com
 - **Real-time Updates :** Firestore ensures real-time data synchronization.
 
 
-## 🛠 Tech Stack
+##   🛠 Tech Stack
 - **ReactJS :** Front-end library for building the user interface.
 - **TailwindCSS :** Utility-first CSS framework for styling.
 - **Firestore :** NoSQL database for storing blog data and comments.

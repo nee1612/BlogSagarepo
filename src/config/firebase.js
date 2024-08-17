@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { BiHome } from "react-icons/bi";
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDNeoQFETmNRb2c7Xv1y0i01i2KYfJXVi4",
@@ -52,6 +51,5 @@ export const db = getFirestore();
 
 export const getCurrentUser = () => {
   const currentUser = auth.currentUser;
-  // console.log(currentUser, "curruser");
   return currentUser;
 };

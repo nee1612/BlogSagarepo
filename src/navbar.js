@@ -77,6 +77,14 @@ const Navbar = ({ click }) => {
                   About
                 </Link>
               </li>
+              <li>
+                <Link
+                  class=" tap-transparent hover:border-b-[2px] border-purple-700 inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
+                  to="/blogGen"
+                >
+                  Generate Blog
+                </Link>
+              </li>
             </ul>
           </div>
 

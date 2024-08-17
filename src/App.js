@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogContextProvider from "./contexts/BlogContextProvider";
 import Navbar from "./navbar";
@@ -20,6 +21,8 @@ import BlogDetailDash from "./Dashboard/BlogDetailDash.js";
 import EditBlog from "./Dashboard/EditBlog.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BlogGenerator from "./BlogGenerator.js";
+import GeminiTest from "./GeminiTest.js";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,6 +53,9 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard/detail" element={<BlogDetailDash />} />
               <Route path="/dashboard/edit" element={<EditBlog />} />
+              <Route path="/blogGen" element={<BlogGenerator />} />
+              <Route path="/gemi" element={<GeminiTest />} />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
